@@ -1,4 +1,4 @@
-# Annotate with Location*
+# Annotate with Location
 
 MoveApps
 
