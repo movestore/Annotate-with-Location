@@ -1,63 +1,56 @@
 {
   "settings": [
     {
-      "id": "year",
-      "name": "The year.",
-      "description": "Insert description for the year setting setting",
-      "defaultValue": 2022,
+      "id": "attr",
+      "name": "Animal attributes to append.",
+      "description": "Insert the names of animal attributes that you want to append to all locations of the respective track for further analyses. The names need to be in the exact spelling as provided in the output summary of the previous App, separated by comma. Note that including 'timestamp_end' will lead to addition of 'location_long_end' and 'location_lat_end'.",
+      "defaultValue": null,
       "type": "INTEGER"
     }
   ],
   "dependencies": {
     "R": [
       {
-        "name": "lubridate",
-        "version": "1.7.10"
+        "name": "move2"
+      },
+	  {
+        "name": "sf"
       },
       {
-        "name": "move"
+        "name": "foreach"
       }
     ]
   },
-  "createsArtifacts": true,
+  "createsArtifacts": false,
   "license": {
     "key": "MIT"
   },
   "language": "eng",
   "keywords": [
-    "example",
-    "template"
+    "annotate",
+	"location",
+    "non-location",
+	"workaround"
   ],
   "people": [
     {
-      "firstName": "Charles",
+	  "firstName": "Andrea",
       "middleInitials": null,
-      "lastName": "Darwin",
-      "email": "creator@example.com",
-      "roles": [
-        "author",
-        "creator"
-      ],
-      "orcid": null,
-      "affiliation": null,
-      "affiliationRor": null
+      "lastName": "Kölzsch",
+      "email": "akoelzsch@ab.mpg.de",
+      "roles": ["author", "creator"],
+      "orcid": "0000-0003-0193-1563",
+      "affiliation": "Max-Planck-Institute of Animal Behavior",
+      "affiliationRor": "https://ror.org/026stee22"
     }
   ],
   "funding": [
     {
-      "name": "funder name",
-      "comment": "grant for App"
-    }
-  ],
-  "references": [
-    {
-      "type": "IsDescribedBy",
-      "note": "Darwin, C. 1900. The creation. Journal XY. 1-2",
-      "url": "https://anylink.xyz"
+      "name": "North Carolina Zoo"
     }
   ],
   "documentation": {
-    "url": "https://github.com/yourAccount/my-app/README.md"
+    "url": "https://github.com/movestore/Annotate-with-Location/blob/master/README.md"
   }
 }
 

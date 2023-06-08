@@ -1,39 +1,40 @@
-# Name of App *(Give your app a short and informative title. Please adhere to our convention of Title Case without hyphens (e.g. My New App))*
+# Annotate with Location*
 
 MoveApps
 
-Github repository: *github.com/yourAccount/Name-of-App* *(the link to the repository where the code of the app can be found must be provided)*
+Github repository: *github.com/movestore/Annotate-with-Location*
 
 ## Description
-*Enter here the short description of the App that might also be used when filling out the description when submitting the App to Moveapps. This text is directly presented to Users that look through the list of Apps when compiling Workflows.*
+Annotates non-location data with closest-in-time locations of same individual. Works only if used `Transfer to Location Type` App on non-location data and thereafter added location data of same animals and time.
 
 ## Documentation
-*Enter here a detailed description of your App. What is it intended to be used for. Which steps of analyses are performed and how. Please be explicit about any detail that is important for use and understanding of the App and its outcomes.*
+Note that this App is a workaround for integrating non-location and location data of the same animals/tags in time, that works in the presently linear workflow structure of MoveApps. It is linked with the `Transfer to Location Type` App and needs to be used in combination with it and some location data upload; see example workflow `Mortality by Activity with Location`. Both Apps will be removed/replaced when MoveApps will be enabled to allow for Apps with several inputs.
+
+The App splits the data into originally non-location tracks (indicated by the attribute IOTYPE='move2_nonloc' set by the `Transfer to Location Type` App) and location tracks. Then the names are checked for overlap, the names of the non-location tracks should be contained in the location track names or vice versa (e.g. 'abc' and 'abc1'; after running check the App logs for names). If no partner location track is found the (0,0) locations are retained for that animal/track.
+
+Once the split and pairing was successful, each originally non-location measurment will be attributed as location the closest-in-time location of the matched track. The `location_timestamp` is added as additional attribute for each row.
+
+For analysis or integration by subsequent Apps in the workflow, a user-defined selection of animal attributes will be added to the track table (with quite some redundancy). If this selection includes `timestamp_end`, also `location_long_end` and `location_lat_end` for this timestamp and animal/track will be added.
+
+Be aware that this likely only works with move2 location data loaded from Movebank/cloud stoage, as the adaption for same animal/track names differs between move and move2.
+
 
 ### Input data
-*Indicate which type of input data the App requires. Currently only R objects of class `MoveStack` can be used. This will be extend in the future.*
-
-*Example*: MoveStack in Movebank format
+move2 location object in Movebank format: combination of transformed non-location data and same-indidividual-and-time location data
 
 ### Output data
-*Indicate which type of output data the App produces to be passed on to subsequent apps. Currently only R objects of class `MoveStack` can be used. This will be extend in the future. In case the App does not pass on any data (e.g. a shiny visualization app), it can be also indicated here that no output is produced to be used in subsequent apps.*
-
-*Example:* MoveStack in Movebank format
+move2 location object in Movebank format: only transformed non-location data with annotated closest-in-time locations
 
 ### Artefacts
-*If the App creates artefacts (e.g. csv, pdf, jpeg, shapefiles, etc), please list them here and describe each.*
-
-*Example:* `rest_overview.csv`: csv-file with Table of all rest site properties
+none
 
 ### Settings 
-*Please list and define all settings/parameters that the App requires to be set by the App user, if necessary including their unit.*
-
-*Example:* `Radius of resting site` (radius): Defined radius the animal has to stay in for a given duration of time for it to be considered resting site. Unit: `metres`.
+**`Animal attributes to append` (attr)**: User-listed animal attributes that will be appended to all locations of the respective track for further analyses. The names need to be in the exact spelling as provided in the output summary of the previous App, separated by comma. Default: `null`.
 
 ### Most common errors
-*Please describe shortly what most common errors of the App can be, how they occur and best ways of solving them.*
+Usually, the names of the originally non-location tracks and the location tracks do not overlap exactly, and the App has made some assumptions for renaming. The assumptions might not work for some use cases. Check the logs of the App after it has run. Please submit an issue here (with example data), if you cannot solve this naming problem.
 
 ### Null or error handling
-*Please indicate for each setting as well as the input data which behaviour the App is supposed to show in case of errors or NULL values/input. Please also add notes of possible errors that can happen if settings/parameters are improperly set and any other important information that you find the user should be aware of.*
+**Setting `attr`:** Note that this setting is for animal attriutes only and that spelling mistakes will lead to the App failing. Check carefully in the output summary/overview of the previous App of the workflow.
 
-*Example:* **Setting `radius`:** If no radius AND no duration are given, the input data set is returned with a warning. If no radius is given (NULL), but a duration is defined then a default radius of 1000m = 1km is set. 
+**data:** See above for likely problems if the original non-location tracks and location tracks do not have sufficiently matching names. Note that only the annotated, originally non-location tracks will be passed on as App output.
