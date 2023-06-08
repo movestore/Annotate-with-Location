@@ -5,7 +5,7 @@
       "name": "Animal attributes to append.",
       "description": "Insert the names of animal attributes that you want to append to all locations of the respective track for further analyses. The names need to be in the exact spelling as provided in the output summary of the previous App, separated by comma. Note that including 'timestamp_end' will lead to addition of 'location_long_end' and 'location_lat_end'.",
       "defaultValue": null,
-      "type": "INTEGER"
+      "type": "STRING"
     }
   ],
   "dependencies": {
