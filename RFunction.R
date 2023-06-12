@@ -67,7 +67,7 @@ rFunction = function(data,attr) {
         nonloci$location_lat <- coo[,2]
         nonloci$location_long <- coo[,1]
         nonloci$location_timestamp <- time_pos
-        nonloci$geometry <- st_sfc(st_multipoint(coo),crs=st_crs("WGS84"))
+        for (i in seq(along=coo[,1])) nonloci$geometry[i] <- st_sfc(st_point(coo[i,]),crs=st_crs("WGS84")) #this is a for-loop, but multipoint does not work...
         
         if (!is.null(attr))
         {
