@@ -75,7 +75,8 @@ rFunction = function(data,attr) {
           
           if ("timestamp_end" %in% attru)
           {
-            y <- (mt_track_data(nonloci)["timestamp_end"])[1,1]
+            #nonloci[,"timestamp_end"] <- as.character(as.POSIXct(as.data.frame(nonloci[,"timestamp_end"])[,"timestamp_end"],origin="1970-01-01 00:00:00"))
+            y <- as.POSIXct((mt_track_data(nonloci)["timestamp_end"])[1,1],origin="1970-01-01 00:00:00")
             coo_end <- st_coordinates(datai[which(abs(difftime(mt_time(datai),y))==min(abs(difftime(mt_time(datai),y)))),])
             location_long_end <- coo_end[1]
             location_lat_end <- coo_end[2]

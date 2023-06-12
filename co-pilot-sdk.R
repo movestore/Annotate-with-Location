@@ -4,7 +4,7 @@
 ## Provided testing datasets in `./data/raw`: 
 ## for own data: file saved as a .rds containing a object of class MoveStack
 #inputFileName = "./data/raw/input1_greygeese.rds" 
-inputFileName = "combi_vulture_loc_nonloc_move2.rds" 
+inputFileName = "Vultures_Africa__moveStack_to_move2_loc__2023-06-08_11-52-13.rds" 
 
 
 ## optionally change the output file name
@@ -25,7 +25,7 @@ outputFileName = "./data/output/output.rds"
 
 args <- list() # if your function has no arguments, this line still needs to be active
 # Add all your arguments of your r-function here
-args[["attr"]] = "number_of_measuremens,timestamp_end,voltage_end [mV],est_voltage_change_rate [mV/h],voltage_alert,max_activity_timestamp,max_activity_dt [secs],max_activity_difference,activity_alert"
+args[["attr"]] = "number_of_measuremens,timestamp_end,voltage_end [mV],est_voltage_change_rate [mV/d],voltage_alert,max_activity_timestamp, max_activity_dt [secs],max_activity_difference,activity_alert"
 
 ##############################
 ## source, setup & simulate ## leave as is!
